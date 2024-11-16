@@ -1,0 +1,6 @@
+@TCTest.WebApi_HostAddress = http://localhost:5168
+
+GET {{TCTest.WebApi_HostAddress}}/api/users
+Accept: application/json
+
+###

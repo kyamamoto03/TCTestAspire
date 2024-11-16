@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postgresql:
+    container_name: tctest-postgresql
+    build: ./tctest-postgresql
+    ports:
+      - 51557:5432
+    volumes:
+      - ./tctest-postgresql/init:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    restart: always
