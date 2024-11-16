@@ -16,8 +16,7 @@ public static class UserApi
         return api;
     }
 
-    private static async Task DeleteUserAsync(
-        HttpContext context,
+    public static async Task DeleteUserAsync(
         string userId,
         IUserRepository userRepository)
     {
@@ -25,8 +24,7 @@ public static class UserApi
         await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task PutUserAsync(
-        HttpContext context,
+    public static async Task PutUserAsync(
         string UserId,
         PutUserRequest putUserRequest,
         IUserRepository userRepository)
@@ -35,8 +33,7 @@ public static class UserApi
         await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task PostUserAsync(
-        HttpContext context,
+    public static async Task PostUserAsync(
         PostUserRequest postUserRequest,
         IUserRepository userRepository)
     {
@@ -44,8 +41,7 @@ public static class UserApi
         await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task<GetUserResponse> GetUserAtAsync(
-        HttpContext context,
+    public static async Task<GetUserResponse> GetUserAtAsync(
         string userId,
         IUserRepository _userRepository)
     {
@@ -53,8 +49,7 @@ public static class UserApi
         return new GetUserResponse(user.UserId, user.Name, user.Age);
     }
 
-    private static async Task<GetUserResponse[]> GetUserAsync(
-        HttpContext context,
+    public static async Task<GetUserResponse[]> GetUserAsync(
         IUserRepository userRepository)
     {
         List<GetUserResponse> getUserResponses = new();
