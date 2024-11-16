@@ -14,4 +14,14 @@ public class User : IAggregateRoot
         Name = name;
         Age = age;
     }
+
+    public void SetName(string name)
+    {
+        Name = name;
+    }
+
+    public void SetAge(int age)
+    {
+        Age = age;
+    }
 }

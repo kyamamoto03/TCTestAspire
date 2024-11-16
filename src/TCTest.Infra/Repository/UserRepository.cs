@@ -8,29 +8,47 @@ public class UserRepository(TCTestDB _tcTestDB) : IUserRepository
 {
     public IUnitOfWork UnitOfWork => _tcTestDB;
 
-    public Task AddUserAsync(User user)
+    public async ValueTask AddUserAsync(User user)
     {
-        throw new NotImplementedException();
+        await _tcTestDB.Users.AddAsync(user);
     }
 
-    public Task DeleteUserAsync(string userId)
+    public async ValueTask DeleteUserAsync(string userId)
     {
-        throw new NotImplementedException();
+        var targetUser = await _tcTestDB.Users.FindAsync(userId);
+
+        if (targetUser == null)
+        {
+            throw new Exception("User not found");
+        }
+
+        _tcTestDB.Users.Remove(targetUser);
     }
 
-    public Task<User> GetUserAsync(string userId)
+    public async ValueTask<User> GetUserAsync(string userId)
     {
-        throw new NotImplementedException();
+        var user = await _tcTestDB.Users.FindAsync(userId);
+        if (user == null)
+        {
+            throw new Exception("User not found");
+        }
+        return user;
     }
 
-    public async Task<User[]> GetUsersAsync()
+    public async ValueTask<User[]> GetUsersAsync()
     {
         var users = await _tcTestDB.Users.ToArrayAsync();
         return users;
     }
 
-    public Task UpdateUserAsync(string userId, string Name, int Age)
+    public async ValueTask UpdateUserAsync(string userId, string Name, int Age)
     {
-        throw new NotImplementedException();
+        var user = await _tcTestDB.Users.FindAsync(userId);
+        if (user == null)
+        {
+            throw new Exception("User not found");
+        }
+        user.SetName(Name);
+        user.SetAge(Age);
     }
 }

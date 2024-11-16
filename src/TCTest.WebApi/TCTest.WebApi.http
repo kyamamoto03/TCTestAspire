@@ -4,3 +4,27 @@ GET {{TCTest.WebApi_HostAddress}}/api/users
 Accept: application/json
 
 ###
+GET {{TCTest.WebApi_HostAddress}}/api/users/USER01
+Accept: application/json
+
+###
+POST {{TCTest.WebApi_HostAddress}}/api/users
+Content-Type: application/json
+{
+  "userId": "Add-USER01",
+  "name": "追加ユーザ1",
+  "age":30
+}
+
+###
+Put {{TCTest.WebApi_HostAddress}}/api/users/Add-USER01
+Content-Type: application/json
+{
+  "userId": "Add-USER01",
+  "name": "追加ユーザ1-1",
+  "age":30
+}
+
+###
+DELETE {{TCTest.WebApi_HostAddress}}/api/users/Add-USER01
+Accept: application/json

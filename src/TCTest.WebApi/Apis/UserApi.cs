@@ -16,33 +16,50 @@ public static class UserApi
         return api;
     }
 
-    private static async Task DeleteUserAsync(HttpContext context)
+    private static async Task DeleteUserAsync(
+        HttpContext context,
+        string userId,
+        IUserRepository userRepository)
     {
-        throw new NotImplementedException();
+        await userRepository.DeleteUserAsync(userId);
+        await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task PutUserAsync(HttpContext context)
+    private static async Task PutUserAsync(
+        HttpContext context,
+        string UserId,
+        PutUserRequest putUserRequest,
+        IUserRepository userRepository)
     {
-        throw new NotImplementedException();
+        await userRepository.UpdateUserAsync(UserId, putUserRequest.Name, putUserRequest.Age);
+        await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task PostUserAsync(HttpContext context)
+    private static async Task PostUserAsync(
+        HttpContext context,
+        PostUserRequest postUserRequest,
+        IUserRepository userRepository)
     {
-        throw new NotImplementedException();
+        await userRepository.AddUserAsync(new User(postUserRequest.UserId, postUserRequest.Name, postUserRequest.Age));
+        await userRepository.UnitOfWork.SaveEntitiesAsync();
     }
 
-    private static async Task GetUserAtAsync(HttpContext context)
+    private static async Task<GetUserResponse> GetUserAtAsync(
+        HttpContext context,
+        string userId,
+        IUserRepository _userRepository)
     {
-        throw new NotImplementedException();
+        var user = await _userRepository.GetUserAsync(userId);
+        return new GetUserResponse(user.UserId, user.Name, user.Age);
     }
 
     private static async Task<GetUserResponse[]> GetUserAsync(
         HttpContext context,
-        IUserRepository _userRepository)
+        IUserRepository userRepository)
     {
         List<GetUserResponse> getUserResponses = new();
 
-        var users = await _userRepository.GetUsersAsync();
+        var users = await userRepository.GetUsersAsync();
         foreach (var user in users)
         {
             getUserResponses.Add(new GetUserResponse(user.UserId, user.Name, user.Age));
