@@ -25,13 +25,9 @@ public class UserRepository(TCTestDB _tcTestDB) : IUserRepository
         _tcTestDB.Users.Remove(targetUser);
     }
 
-    public async ValueTask<User> GetUserAsync(string userId)
+    public async ValueTask<User?> GetUserAsync(string userId)
     {
         var user = await _tcTestDB.Users.FindAsync(userId);
-        if (user == null)
-        {
-            throw new Exception("User not found");
-        }
         return user;
     }
 

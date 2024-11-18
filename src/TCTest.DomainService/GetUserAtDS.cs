@@ -11,6 +11,12 @@ public class GetUserAtDS(IUserRepository _userRepository) : IGetUserAtDS
 {
     public async Task<User> ExecuteAsync(string userId)
     {
-        return await _userRepository.GetUserAsync(userId);
+        var user = await _userRepository.GetUserAsync(userId);
+        if (user is null)
+        {
+            throw new Exception("User not found.");
+        }
+
+        return user;
     }
 }

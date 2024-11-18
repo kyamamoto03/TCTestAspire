@@ -21,6 +21,8 @@ public static class UserApi
         string userId,
         [FromServices] IDeleteUserDS deleteUserDS)
     {
+        // 認証やらバリデーション
+
         await deleteUserDS.ExecuteAsync(userId);
     }
 
@@ -29,6 +31,8 @@ public static class UserApi
         PutUserRequest putUserRequest,
         [FromServices] IUpdateUserDS updateUserDS)
     {
+        // 認証やらバリデーション
+
         await updateUserDS.ExecuteAsync(UserId, putUserRequest.Name, putUserRequest.Age);
     }
 
@@ -36,6 +40,8 @@ public static class UserApi
         PostUserRequest postUserRequest,
         [FromServices] IAddUserDS addUserDS)
     {
+        // 認証やらバリデーション
+
         await addUserDS.ExecuteAsync(postUserRequest.UserId, postUserRequest.Name, postUserRequest.Age);
     }
 
@@ -43,8 +49,9 @@ public static class UserApi
         string userId,
         [FromServices] IGetUserAtDS getUserAtDS)
     {
-        var user = await getUserAtDS.ExecuteAsync(userId);
+        // 認証やらバリデーション
 
+        var user = await getUserAtDS.ExecuteAsync(userId);
         // DTO mapping
         return new GetUserResponse(user.UserId, user.Name, user.Age);
     }
@@ -53,6 +60,8 @@ public static class UserApi
         [FromServices] IGetUserDS getUserDS)
     {
         List<GetUserResponse> getUserResponses = new();
+
+        // 認証やらバリデーション
 
         var users = await getUserDS.ExecuteAsync();
 

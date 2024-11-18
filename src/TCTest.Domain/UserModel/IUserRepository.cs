@@ -4,7 +4,7 @@ namespace TCTest.Domain.UserModel;
 
 public interface IUserRepository : IRepository<User>
 {
-    ValueTask<User> GetUserAsync(string userId);
+    ValueTask<User?> GetUserAsync(string userId);
 
     ValueTask<User[]> GetUsersAsync();
 
