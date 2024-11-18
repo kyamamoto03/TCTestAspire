@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TCTest.DomainService\TCTest.DomainService.csproj" />
-    <ProjectReference Include="..\src\TCTest.WebApi\TCTest.WebApi.csproj" />
+    <ProjectReference Include="..\..\src\TCTest.DomainService\TCTest.DomainService.csproj" />
+    <ProjectReference Include="..\..\src\TCTest.Domain\TCTest.Domain.csproj" />
+    <ProjectReference Include="..\..\src\TCTest.Infra\TCTest.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

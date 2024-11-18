@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCTest.Domain.UserModel;
-using TCTest.DTO;
 using TCTest.Infra;
 using TCTest.Infra.Repository;
-using TCTest.WebApi.Apis;
 
-namespace TCTest.WebApi.Test;
+namespace TCTest.DomainService.Test;
 
 public class PostUserTest : DbInstance
 {
@@ -23,24 +21,24 @@ public class PostUserTest : DbInstance
     {
         // Arrange
         var db = CreateTcTestDB();
-        var UserId = "PostUser01";
-        var user = new PostUserRequest
-        {
-            UserId = UserId,
-            Name = "PostUserName",
-            Age = 50
-        };
+
+        string UserId = "PostUser01";
+        string Name = "PostUserName";
+        int Age = 50;
 
         IUserRepository userRepository = new UserRepository(db);
-        // Act
-        await UserApi.PostUserAsync(user, userRepository);
+        AddUserDS addUserDS = new AddUserDS(userRepository);
+        GetUserAtDS getUserAtDS = new GetUserAtDS(userRepository);
 
-        var addUser = await UserApi.GetUserAtAsync(UserId, userRepository);
+        // Act
+        await addUserDS.ExecuteAsync(UserId, Name, Age);
+
+        var addUser = await getUserAtDS.ExecuteAsync(UserId);
 
         // Assert
         Assert.NotNull(addUser);
         Assert.Equal(UserId, addUser.UserId);
-        Assert.Equal(user.Name, addUser.Name);
-        Assert.Equal(user.Age, addUser.Age);
+        Assert.Equal(Name, addUser.Name);
+        Assert.Equal(Age, addUser.Age);
     }
 }

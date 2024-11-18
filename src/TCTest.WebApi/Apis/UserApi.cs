@@ -1,4 +1,4 @@
-﻿using TCTest.Domain.UserModel;
+﻿using TCTest.DomainService;
 using TCTest.DTO;
 
 namespace TCTest.WebApi.Apis;
@@ -18,43 +18,44 @@ public static class UserApi
 
     public static async Task DeleteUserAsync(
         string userId,
-        IUserRepository userRepository)
+        DeleteUserDS deleteUserDS)
     {
-        await userRepository.DeleteUserAsync(userId);
-        await userRepository.UnitOfWork.SaveEntitiesAsync();
+        await deleteUserDS.ExecuteAsync(userId);
     }
 
     public static async Task PutUserAsync(
         string UserId,
         PutUserRequest putUserRequest,
-        IUserRepository userRepository)
+        IUpdateUserDS updateUserDS)
     {
-        await userRepository.UpdateUserAsync(UserId, putUserRequest.Name, putUserRequest.Age);
-        await userRepository.UnitOfWork.SaveEntitiesAsync();
+        await updateUserDS.ExecuteAsync(UserId, putUserRequest.Name, putUserRequest.Age);
     }
 
     public static async Task PostUserAsync(
         PostUserRequest postUserRequest,
-        IUserRepository userRepository)
+        IAddUserDS addUserDS)
     {
-        await userRepository.AddUserAsync(new User(postUserRequest.UserId, postUserRequest.Name, postUserRequest.Age));
-        await userRepository.UnitOfWork.SaveEntitiesAsync();
+        await addUserDS.ExecuteAsync(postUserRequest.UserId, postUserRequest.Name, postUserRequest.Age);
     }
 
     public static async Task<GetUserResponse> GetUserAtAsync(
         string userId,
-        IUserRepository _userRepository)
+        IGetUserAtDS getUserAtDS)
     {
-        var user = await _userRepository.GetUserAsync(userId);
+        var user = await getUserAtDS.ExecuteAsync(userId);
+
+        // DTO mapping
         return new GetUserResponse(user.UserId, user.Name, user.Age);
     }
 
     public static async Task<GetUserResponse[]> GetUserAsync(
-        IUserRepository userRepository)
+        IGetUserDS getUserDS)
     {
         List<GetUserResponse> getUserResponses = new();
 
-        var users = await userRepository.GetUsersAsync();
+        var users = await getUserDS.ExecuteAsync();
+
+        // DTO mapping
         foreach (var user in users)
         {
             getUserResponses.Add(new GetUserResponse(user.UserId, user.Name, user.Age));

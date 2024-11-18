@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Testcontainers.PostgreSql;
 
-namespace TCTest.WebApi.Test;
+namespace TCTest.DomainService.Test;
 
 public class DbInstance : IAsyncLifetime
 {
@@ -12,7 +12,7 @@ public class DbInstance : IAsyncLifetime
         get
         {
             var dir = System.Environment.CurrentDirectory;
-            return $"{dir}/../../../../db/tctest-postgresql/init";
+            return $"{dir}/../../../../../db/tctest-postgresql/init";
         }
     }
 

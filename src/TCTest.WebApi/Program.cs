@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TCTest.Domain.UserModel;
+using TCTest.DomainService;
 using TCTest.Infra;
 using TCTest.Infra.Repository;
 using TCTest.WebApi.Apis;
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<TCTestDB>(options =>
 #endregion DB
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddDomainServices();
 
 var app = builder.Build();
 

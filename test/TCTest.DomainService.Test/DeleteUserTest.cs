@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCTest.Infra;
 using TCTest.Infra.Repository;
-using TCTest.WebApi.Apis;
 
-namespace TCTest.WebApi.Test;
+namespace TCTest.DomainService.Test;
 
 public class DeleteUserTest : DbInstance
 {
@@ -24,13 +23,16 @@ public class DeleteUserTest : DbInstance
         var userRepository = new UserRepository(db);
         var userId = "USER01";
 
+        DeleteUserDS deleteUserDS = new DeleteUserDS(userRepository);
+        GetUserAtDS getUserAtDS = new GetUserAtDS(userRepository);
+
         // Act
-        await UserApi.DeleteUserAsync(userId, userRepository);
+        await deleteUserDS.ExecuteAsync(userId);
 
         // Assert Exceptionが発生すること
         await Assert.ThrowsAsync<Exception>(async () =>
         {
-            await UserApi.GetUserAtAsync(userId, userRepository);
+            await getUserAtDS.ExecuteAsync(userId);
         });
     }
 }

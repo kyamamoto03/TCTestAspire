@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TCTest.Infra;
 using TCTest.Infra.Repository;
-using TCTest.WebApi.Apis;
 
-namespace TCTest.WebApi.Test;
+namespace TCTest.DomainService.Test;
 
 public class GetUserTest : DbInstance
 {
@@ -21,9 +20,10 @@ public class GetUserTest : DbInstance
     {
         // Arrange
         var db = CreateTcTestDB();
+        GetUserDS getUserDS = new(new UserRepository(db));
 
         // Act
-        var users = await UserApi.GetUserAsync(new UserRepository(db));
+        var users = await getUserDS.ExecuteAsync();
 
         // Assert
         Assert.NotNull(users);

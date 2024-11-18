@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TCTest.DTO;
 using TCTest.Infra;
 using TCTest.Infra.Repository;
-using TCTest.WebApi.Apis;
 
-namespace TCTest.WebApi.Test;
+namespace TCTest.DomainService.Test;
 
 public class PutUserTest : DbInstance
 {
@@ -23,21 +21,22 @@ public class PutUserTest : DbInstance
         // Arrange
         var db = CreateTcTestDB();
         var userRepository = new UserRepository(db);
-        var userId = "USER01";
 
-        var putUserRequest = new PutUserRequest
-        {
-            Name = "Test更新",
-            Age = 22
-        };
+        var UserId = "USER01";
+        string Name = "Test更新";
+        int Age = 22;
+
+        UpdateUserDS updateUserDS = new(userRepository);
+        GetUserAtDS getUserAtDS = new(userRepository);
+
         // Act
-        await UserApi.PutUserAsync(userId, putUserRequest, userRepository);
+        await updateUserDS.ExecuteAsync(UserId, Name, Age);
 
-        var user = await UserApi.GetUserAtAsync(userId, userRepository);
+        var user = await getUserAtDS.ExecuteAsync(UserId);
 
         // Assert
         Assert.NotNull(user);
-        Assert.Equal("Test更新", user.Name);
-        Assert.Equal(22, user.Age);
+        Assert.Equal(Name, user.Name);
+        Assert.Equal(Age, user.Age);
     }
 }
