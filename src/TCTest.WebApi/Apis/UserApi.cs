@@ -28,7 +28,7 @@ public static class UserApi
 
     public static async Task PutUserAsync(
         string UserId,
-        PutUserRequest putUserRequest,
+        [FromBody] PutUserRequest putUserRequest,
         [FromServices] IUpdateUserDS updateUserDS)
     {
         // 認証やらバリデーション
@@ -37,7 +37,7 @@ public static class UserApi
     }
 
     public static async Task PostUserAsync(
-        PostUserRequest postUserRequest,
+        [FromBody] PostUserRequest postUserRequest,
         [FromServices] IAddUserDS addUserDS)
     {
         // 認証やらバリデーション
