@@ -1,4 +1,5 @@
-﻿using TCTest.DomainService;
+﻿using Microsoft.AspNetCore.Mvc;
+using TCTest.DomainService;
 using TCTest.DTO;
 
 namespace TCTest.WebApi.Apis;
@@ -18,7 +19,7 @@ public static class UserApi
 
     public static async Task DeleteUserAsync(
         string userId,
-        DeleteUserDS deleteUserDS)
+        [FromServices] IDeleteUserDS deleteUserDS)
     {
         await deleteUserDS.ExecuteAsync(userId);
     }
@@ -26,21 +27,21 @@ public static class UserApi
     public static async Task PutUserAsync(
         string UserId,
         PutUserRequest putUserRequest,
-        IUpdateUserDS updateUserDS)
+        [FromServices] IUpdateUserDS updateUserDS)
     {
         await updateUserDS.ExecuteAsync(UserId, putUserRequest.Name, putUserRequest.Age);
     }
 
     public static async Task PostUserAsync(
         PostUserRequest postUserRequest,
-        IAddUserDS addUserDS)
+        [FromServices] IAddUserDS addUserDS)
     {
         await addUserDS.ExecuteAsync(postUserRequest.UserId, postUserRequest.Name, postUserRequest.Age);
     }
 
     public static async Task<GetUserResponse> GetUserAtAsync(
         string userId,
-        IGetUserAtDS getUserAtDS)
+        [FromServices] IGetUserAtDS getUserAtDS)
     {
         var user = await getUserAtDS.ExecuteAsync(userId);
 
@@ -49,7 +50,7 @@ public static class UserApi
     }
 
     public static async Task<GetUserResponse[]> GetUserAsync(
-        IGetUserDS getUserDS)
+        [FromServices] IGetUserDS getUserDS)
     {
         List<GetUserResponse> getUserResponses = new();
 
