@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Testcontainers.PostgreSql;
+﻿using Testcontainers.PostgreSql;
 
 namespace TCTest.DomainService.Test;
 
@@ -29,7 +28,7 @@ public class DbInstance : IAsyncLifetime
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex.Message);
+            throw;
         }
         return _postgres.StartAsync();
     }
