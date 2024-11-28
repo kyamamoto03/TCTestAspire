@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2CCA6A7E-2770-45B3-AC34-7DCF920A77AC}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCTest.DomainService", "src\TCTest.DomainService\TCTest.DomainService.csproj", "{28CCADC0-2B04-473E-801D-BBA6AB5BB827}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCTest.DomainService.Test", "test\TCTest.DomainService.Test\TCTest.DomainService.Test.csproj", "{4ECF7E2B-49B4-4F1F-A561-1DCE078F5D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCTest.ServiceDefaults", "src\TCTest.ServiceDefaults\TCTest.ServiceDefaults.csproj", "{0E5301D1-3047-4C9D-BC0C-C9C880478501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCTest.AppHost", "src\TCTest.AppHost\TCTest.AppHost.csproj", "{5878CF68-C6BF-4D39-8006-72F6712F4EE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{4ECF7E2B-49B4-4F1F-A561-1DCE078F5D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ECF7E2B-49B4-4F1F-A561-1DCE078F5D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ECF7E2B-49B4-4F1F-A561-1DCE078F5D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E5301D1-3047-4C9D-BC0C-C9C880478501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E5301D1-3047-4C9D-BC0C-C9C880478501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E5301D1-3047-4C9D-BC0C-C9C880478501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E5301D1-3047-4C9D-BC0C-C9C880478501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5878CF68-C6BF-4D39-8006-72F6712F4EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5878CF68-C6BF-4D39-8006-72F6712F4EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5878CF68-C6BF-4D39-8006-72F6712F4EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5878CF68-C6BF-4D39-8006-72F6712F4EE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +72,7 @@ Global
 		{4C411854-532F-435D-A586-1959A0973116} = {2CCA6A7E-2770-45B3-AC34-7DCF920A77AC}
 		{28CCADC0-2B04-473E-801D-BBA6AB5BB827} = {2CCA6A7E-2770-45B3-AC34-7DCF920A77AC}
 		{4ECF7E2B-49B4-4F1F-A561-1DCE078F5D37} = {FE1CEA2F-157F-4164-9517-6FCDA4B27B49}
+		{0E5301D1-3047-4C9D-BC0C-C9C880478501} = {2CCA6A7E-2770-45B3-AC34-7DCF920A77AC}
+		{5878CF68-C6BF-4D39-8006-72F6712F4EE3} = {2CCA6A7E-2770-45B3-AC34-7DCF920A77AC}
 	EndGlobalSection
 EndGlobal

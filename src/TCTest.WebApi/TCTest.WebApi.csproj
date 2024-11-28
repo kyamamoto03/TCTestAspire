@@ -11,6 +11,7 @@
     <ProjectReference Include="..\TCTest.Domain\TCTest.Domain.csproj" />
     <ProjectReference Include="..\TCTest.DTO\TCTest.DTO.csproj" />
     <ProjectReference Include="..\TCTest.Infra\TCTest.Infra.csproj" />
+    <ProjectReference Include="..\TCTest.ServiceDefaults\TCTest.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

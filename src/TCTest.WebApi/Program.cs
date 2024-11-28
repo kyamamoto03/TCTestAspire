@@ -8,6 +8,8 @@ using TCTest.WebApi.Apis;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
+builder.AddServiceDefaults();
+
 #region DB
 
 builder.Services.AddDbContext<TCTestDB>(options =>
@@ -24,6 +26,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddDomainServices();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 
