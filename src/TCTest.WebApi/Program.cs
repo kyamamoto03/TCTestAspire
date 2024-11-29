@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using TCTest.Domain.UserModel;
 using TCTest.DomainService;
 using TCTest.Infra;
@@ -12,12 +11,7 @@ builder.AddServiceDefaults();
 
 #region DB
 
-builder.Services.AddDbContext<TCTestDB>(options =>
-{
-    //ConnectionStringsÇ©ÇÁì«Ç›çûÇﬁ
-    var conn = builder.Configuration.GetConnectionString("TCTestDB");
-    options.UseNpgsql(conn);
-});
+builder.AddNpgsqlDbContext<TCTestDB>("tctestdb");
 
 #endregion DB
 
