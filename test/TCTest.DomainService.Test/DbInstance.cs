@@ -11,7 +11,7 @@ public class DbInstance : IAsyncLifetime
         get
         {
             var dir = System.Environment.CurrentDirectory;
-            return $"{dir}/../../../../../db/tctest-postgresql/init";
+            return $"{dir}/../../../../../src/TCTest.AppHost/data";
         }
     }
 

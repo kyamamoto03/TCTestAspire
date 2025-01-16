@@ -1,10 +1,4 @@
 
---DBの作成
-CREATE DATABASE tctestdb;
---ユーザーにDBの権限をまとめて付与
-
---ユーザーを切り替え
-\c tctestdb
 
 -- Project Name : TCTest
 -- Date/Time    : 2024/11/16 16:22:55
